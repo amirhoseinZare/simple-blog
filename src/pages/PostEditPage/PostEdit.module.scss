@@ -1,0 +1,32 @@
+.inputsContainer {
+    margin: auto;
+    height: 500px;
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+
+    .inputItem {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .buttonsContainer {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+
+
+        .buttonItem {
+            font-size: 18px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            width:100px;
+            background-color: #fff;
+            border: none;
+            box-shadow: -1px 4px 6px 3px rgba(20, 20, 20, .3);
+            border-radius:30px;
+        }
+    }
+
+}
