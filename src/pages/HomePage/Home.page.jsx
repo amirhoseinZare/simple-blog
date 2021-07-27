@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import {userApi, postApi} from "../../api/index"
-import {UserList, UserPosts} from "../../components/index"
+import {UserList, UserPosts, ThemeToggleButton} from "../../components/index"
 import classes from "./Homepage.module.scss"
 import {useSelector} from "react-redux"
 
@@ -24,7 +24,6 @@ export const HomePage = () =>{
 
     const setPosts = async (id)=>{
         try {
-            
             const {data:postList} = await postApi.getList({ params:{userId:id} })
             setPostState({list:postList})                
         } catch (error) {
