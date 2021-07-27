@@ -40,6 +40,10 @@ class HTTPService {
     post = (body)=>{
         return instance.post(`/${this.entity}`, body)
     }
+
+    put = (id, body)=>{
+        return instance.put(`/${this.entity}/${id}`, body)
+    }
     
     patch = (id, body)=>{
         return instance.patch(`/${this.entity}/${id}`, body)
