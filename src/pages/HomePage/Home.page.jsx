@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import {userApi, postApi} from "../../api/index"
 import {UserList, UserPosts} from "../../components/index"
+import classes from "./Homepage.module.scss"
 
 export const HomePage = () =>{
 
@@ -41,7 +42,7 @@ export const HomePage = () =>{
     const {list:postList} = postState
 
     return (
-        <main style={{display: 'flex'}}>
+        <main className={classes.main}>
             <UserList users={userList} setActiveUser={setActiveUser} activeUser={activeUser}/>
             <UserPosts posts={postList} user={activeUser}/>
         </main>
