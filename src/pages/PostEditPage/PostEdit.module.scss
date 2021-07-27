@@ -27,6 +27,20 @@
             box-shadow: -1px 4px 6px 3px rgba(20, 20, 20, .3);
             border-radius:30px;
         }
+
+        .cancelButton {
+            font-size: 18px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            width:100px;
+            background-color: #fff;
+            border: none;
+            box-shadow: -1px 4px 6px 3px rgba(20, 20, 20, .3);
+            border-radius:30px;
+            text-decoration: none;
+            text-align: center;
+            color:#000;
+        }
     }
 
 }
