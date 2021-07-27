@@ -5,8 +5,13 @@ import {UserList} from "../../components/index"
 export const HomePage = () =>{
 
     const [usersState, setUsersState] = useState({
-        list:[{}]
+        list:[{}],
+        active:null
     })
+
+    const setActiveUser = (id)=>{
+        setUsersState({...usersState, active:id})
+    }
 
     const setUsers = async ()=>{
         const {data:usersList} = await userApi.getList()
@@ -18,9 +23,11 @@ export const HomePage = () =>{
         setUsers()
     }, [])
 
+    const {active:activeUser , list:userList} = usersState
+
     return (
         <div>
-            <UserList users={usersState.list}/>
+            <UserList users={userList} setActiveUser={setActiveUser} activeUser={activeUser}/>
         </div>
     )
 }
