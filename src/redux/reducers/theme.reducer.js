@@ -11,7 +11,7 @@ const themeReducer = (state=INITIAL_STATE, action) => {
             return { ...state, theme }
         }
         default:
-            return { state}
+            return state
     }
 }
 

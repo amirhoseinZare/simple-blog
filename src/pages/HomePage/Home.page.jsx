@@ -2,26 +2,20 @@ import { useEffect, useState } from "react"
 import {userApi, postApi} from "../../api/index"
 import {UserList, UserPosts} from "../../components/index"
 import classes from "./Homepage.module.scss"
+import {useSelector} from "react-redux"
 
 export const HomePage = () =>{
-
     const [usersState, setUsersState] = useState({
-        list:[],
-        active:null
+        list:[]
     })
 
     const [postState, setPostState] = useState({
         list:[]
     })
 
-    const setActiveUser = (id)=>{
-        setUsersState({...usersState, active:id})
-    }
-
     const setUsers = async ()=>{
         try {
             const {data:usersList} = await userApi.getList()
-            console.log(usersList)
             setUsersState({list:usersList})    
         } catch (error) {
             console.log(error)
@@ -30,8 +24,8 @@ export const HomePage = () =>{
 
     const setPosts = async (id)=>{
         try {
+            
             const {data:postList} = await postApi.getList({ params:{userId:id} })
-            console.log(postList)
             setPostState({list:postList})                
         } catch (error) {
             console.log(error)
@@ -42,17 +36,19 @@ export const HomePage = () =>{
         setUsers()
     }, [])
 
-    useEffect(()=>{
-        setPosts(usersState.active)
-    }, [usersState.active])
+    const activeUser = useSelector(({user:{active}})=>active)
 
-    const {active:activeUser , list:userList} = usersState
+    useEffect(()=>{
+        setPosts(activeUser.id)
+    }, [activeUser])
+
+    const {list:userList} = usersState
     const {list:postList} = postState
 
     return (
         <main className={classes.main}>
-            <UserList users={userList} setActiveUser={setActiveUser} activeUser={activeUser}/>
-            <UserPosts posts={postList} user={activeUser}/>
+            <UserList users={userList}/>
+            <UserPosts posts={postList}/>
         </main>
     )
 }

@@ -2,17 +2,17 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 
-import postReducer from "./reducers/post.reducer";
+import userReducer from "./reducers/user.reducer";
 import themeReducer from "./reducers/theme.reducer";
 
 const  persistConfig = {
     key:'root',
     storage,
-    whitelist:[]
+    whitelist:['user', 'theme']
 }
 
 const rootReducer = combineReducers({
-    post:postReducer,
+    user:userReducer,
     theme:themeReducer
 })
 

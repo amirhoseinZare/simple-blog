@@ -1,11 +1,10 @@
 import classes from "./UserList.module.scss"
-
 import {UserCard} from "../index"
 
-export const UserList = ({users, setActiveUser, activeUser}) => (
+export const UserList = ({users}) => (
     <section className={classes.userList}>
         {
-            users.map(({id, name})=> <UserCard key={id} name={name} id={id} active={id===activeUser} setActiveUser={setActiveUser}/>)
+            users.map((user)=> <UserCard key={user.id} user ={user}/>)
         }
     </section>
 )
