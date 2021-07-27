@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react"
-import {userApi} from "../../api/index"
-import {UserList} from "../../components/index"
+import {userApi, postApi} from "../../api/index"
+import {UserList, UserPosts} from "../../components/index"
 
 export const HomePage = () =>{
 
     const [usersState, setUsersState] = useState({
-        list:[{}],
+        list:[],
         active:null
+    })
+
+    const [postState, setPostState] = useState({
+        list:[]
     })
 
     const setActiveUser = (id)=>{
@@ -19,15 +23,27 @@ export const HomePage = () =>{
         setUsersState({list:usersList})
     }
 
+    const setPosts = async (id)=>{
+        const {data:postList} = await postApi.getList({ params:{userId:id} })
+        console.log(postList)
+        setPostState({list:postList})
+    }
+
     useEffect(()=>{
         setUsers()
     }, [])
 
+    useEffect(()=>{
+        setPosts(usersState.active)
+    }, [usersState.active])
+
     const {active:activeUser , list:userList} = usersState
+    const {list:postList} = postState
 
     return (
-        <div>
+        <main style={{display: 'flex'}}>
             <UserList users={userList} setActiveUser={setActiveUser} activeUser={activeUser}/>
-        </div>
+            <UserPosts posts={postList} user={activeUser}/>
+        </main>
     )
 }

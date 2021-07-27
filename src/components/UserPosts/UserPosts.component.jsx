@@ -1,11 +1,12 @@
 import classes from "./UserPosts.module.scss"
 
-import {UserCard} from "../index"
+import {PostCard} from "../index"
 
-export const UserList = ({posts}) => (
-    <section className={classes.userList}>
+export const UserPosts = ({posts, user}) => (
+    <section className={classes.postList}>
+        <h2 className={classes.postsHeader}>User {user} posts</h2>
         {
-            posts.map(({id, name})=> <UserCard key={id} name={name} id={id}/>)
+            posts.map(({id, title, body})=> <PostCard key={id} title={title} body={body}/>)
         }
     </section>
 )
