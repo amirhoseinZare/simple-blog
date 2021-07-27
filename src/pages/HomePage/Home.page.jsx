@@ -19,15 +19,23 @@ export const HomePage = () =>{
     }
 
     const setUsers = async ()=>{
-        const {data:usersList} = await userApi.getList()
-        console.log(usersList)
-        setUsersState({list:usersList})
+        try {
+            const {data:usersList} = await userApi.getList()
+            console.log(usersList)
+            setUsersState({list:usersList})    
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const setPosts = async (id)=>{
-        const {data:postList} = await postApi.getList({ params:{userId:id} })
-        console.log(postList)
-        setPostState({list:postList})
+        try {
+            const {data:postList} = await postApi.getList({ params:{userId:id} })
+            console.log(postList)
+            setPostState({list:postList})                
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(()=>{
