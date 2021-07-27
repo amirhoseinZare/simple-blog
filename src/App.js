@@ -2,9 +2,9 @@ import {AppRouter} from "./router/App.route.jsx"
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <AppRouter/>
-    </div>
+    </main>
   );
 }
 
